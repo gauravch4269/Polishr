@@ -1,0 +1,21 @@
+name: polishr
+region: blr
+services:
+  - name: polishr
+    dockerfile_path: Dockerfile
+    github:
+      repo: gauravch4269/polishr   # change if your repo lives elsewhere
+      branch: main
+      deploy_on_push: true
+    instance_size_slug: apps-s-1vcpu-1gb
+    instance_count: 1
+    http_port: 8080
+    health_check:
+      http_path: /health
+    envs:
+      - key: GEMMA_MODEL
+        value: gemma-4-26b-a4b-it
+      - key: GEMINI_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+        value: ""
